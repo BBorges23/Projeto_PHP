@@ -103,5 +103,32 @@ function update_perfil_for_adm($perfil,$id)
     echo '<meta http-equiv="refresh" content="0;url=?main=admin&conteudo=list_utilizadores">';
 }
 
+/**
+ * Atualiza o status de processamento de um mês na tabela "meses_processados".
+ *
+ * Esta função realiza uma consulta SQL para atualizar o status de processamento de um mês
+ * para o valor "1" (processado) na tabela "meses_processados".
+ *
+ * @param int $id O ID do mês a ser marcado como processado.
+ * @return void
+ */
+function update_mes_processar($id)
+{
+    include 'connections/conn.php'; // Inclui o arquivo de conexão com o banco de dados
+
+    // Consulta SQL para atualizar o status de processamento do mês
+    $query = "UPDATE meses_processados SET processado = 1 WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        echo '<script>alert("Processado com sucesso");</script>'; // Exibe uma mensagem de sucesso
+    } else {
+        echo '<script>alert("Erro ao processar");</script>'; // Exibe uma mensagem de erro
+    }
+
+    include 'connections/deconn.php'; // Fecha a conexão com o banco de dados
+    echo '<meta http-equiv="refresh"'; // Atualiza a página após o processamento
+}
+
 ?>
 

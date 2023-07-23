@@ -26,7 +26,7 @@
 
 <?php
 $id = $_SESSION['id_user'];
-$info_utilizador = getUltilizador($id);
+$info_utilizador = getUtilizador($id);
 echo '
 
 <section id="ultizador" class="container-fluid  ">

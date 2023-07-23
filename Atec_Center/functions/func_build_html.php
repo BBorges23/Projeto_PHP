@@ -10,7 +10,7 @@
  * @return void
  */
 
-function build_perfil_utilizador($ultilizador)
+function build_perfil_utilizador($utilizador)
 {
     // Esta função constrói um formulário de perfil de usuário com os dados fornecidos em $ultilizador.
 
@@ -20,67 +20,67 @@ function build_perfil_utilizador($ultilizador)
             <div class="col-sm-6 ">
                 <div class="form-group h-25">
                     <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" name="nome" id="nome" value="' . $ultilizador['nome'] . '" readonly>
+                    <input type="text" class="form-control" name="nome" id="nome" value="' . $utilizador['nome'] . '" readonly>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="data_nascimento">Data de Nascimento:</label>
-                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento" value="' . $ultilizador['data_nascimento'] . '" readonly >
+                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento" value="' . $utilizador['data_nascimento'] . '" readonly >
                 </div>
 
                 <div class="form-group h-25">
                     <label for="nif">NIF:</label>
-                    <input type="text" class="form-control" name="nif" id="nif" value="' . $ultilizador['nif'] . '" readonly>
+                    <input type="text" class="form-control" name="nif" id="nif" value="' . $utilizador['nif'] . '" readonly>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="iban">IBAN:</label>
-                    <input type="text" class="form-control" name="iban" id="iban" value="' . $ultilizador['iban'] . '" required>
+                    <input type="text" class="form-control" name="iban" id="iban" value="' . $utilizador['iban'] . '" required>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="telm">Telefone Móvel:</label>
-                    <input type="text" class="form-control" name="telm" id="telm" value="' . $ultilizador['telm'] . '" required>
+                    <input type="text" class="form-control" name="telm" id="telm" value="' . $utilizador['telm'] . '" required>
                 </div>
                 	
                 <div class="form-group h-25">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email" value="' . $ultilizador['email'] . '" readonly>
+                    <input type="email" class="form-control" name="email" id="email" value="' . $utilizador['email'] . '" readonly>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group h-25">
                     <label for="morada">Morada:</label>
-                    <input type="text" class="form-control" name="morada" id="morada" value="' . $ultilizador['morada'] . '" required>
+                    <input type="text" class="form-control" name="morada" id="morada" value="' . $utilizador['morada'] . '" required>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="localidade">Localidade:</label>
-                    <input type="text" class="form-control" name="localidade" id="localidade"  value="' . $ultilizador['localidade'] . '" required>
+                    <input type="text" class="form-control" name="localidade" id="localidade"  value="' . $utilizador['localidade'] . '" required>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="cp">Código Postal:</label>
-                    <input type="text" class="form-control" name="cp" id="cp" value="' . $ultilizador['cp'] . '" required>
+                    <input type="text" class="form-control" name="cp" id="cp" value="' . $utilizador['cp'] . '" required>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="departamento">Departamento:</label>
-                    <input type="text" class="form-control" name="departamento" id="departamento"  value="' . obterNomeDepartamento($ultilizador['departamento_id']) . '" readonly >
+                    <input type="text" class="form-control" name="departamento" id="departamento"  value="' . obterNomeDepartamento($utilizador['departamento_id']) . '" readonly >
                 </div>
 
                 <div class="form-group h-25">
                     <label for="funcao">Função:</label>
-                    <input type="text" class="form-control" name="funcao" id="funcao" value="' . $ultilizador['funcao'] . '" required>
+                    <input type="text" class="form-control" name="funcao" id="funcao" value="' . $utilizador['funcao'] . '" required>
                 </div>
 
                 <div class="form-group h-25">
                     <label for="estado_civil">Estado Civil:</label>
                     <select class="form-control" name="estado_civil" id="estado_civil" required>
-                        <option value="solteiro"' . ($ultilizador['estado_civil'] === 'solteiro' ? ' selected' : '') . '>Solteiro</option>
-                        <option value="casado"' . ($ultilizador['estado_civil'] === 'casado' ? ' selected' : '') . '>Casado</option>
-                        <option value="divorciado"' . ($ultilizador['estado_civil'] === 'divorciado' ? ' selected' : '') . '>Divorciado</option>
-                        <option value="viuvo"' . ($ultilizador['estado_civil'] === 'viuvo' ? ' selected' : '') . '>Viúvo</option>
+                        <option value="solteiro"' . ($utilizador['estado_civil'] === 'solteiro' ? ' selected' : '') . '>Solteiro</option>
+                        <option value="casado"' . ($utilizador['estado_civil'] === 'casado' ? ' selected' : '') . '>Casado</option>
+                        <option value="divorciado"' . ($utilizador['estado_civil'] === 'divorciado' ? ' selected' : '') . '>Divorciado</option>
+                        <option value="viuvo"' . ($utilizador['estado_civil'] === 'viuvo' ? ' selected' : '') . '>Viúvo</option>
                     </select>
                 </div>
                 <div class="d-flex justify-content-end pt-2">
@@ -309,6 +309,8 @@ function bild_list_utilizador($utilizadores, $filtro = "", $pagina_atual = 1)
     echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Nif</th>';
     echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Departamento</th>';
     echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Tipo</th>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Delete</th>';
+
     echo '</tr>';
     echo '</thead>';
 
@@ -335,6 +337,13 @@ function bild_list_utilizador($utilizadores, $filtro = "", $pagina_atual = 1)
             // Coluna "Tipo" exibindo o tipo de utilizador como "ADM" para administradores ou "Utilizador" para outros tipos de utilizadores.
             echo '<td class="border text-center">' . (get_tipo_utilizador($value['id']) > 0 ? "ADM" : "Utilizador") . '</td>';
 
+            echo '<form method="POST">';
+            echo '<td class="border text-center">
+            <button type="submit" class="btn btn-danger" name="apagar_utilizador" onclick="return confirm(\'Tem certeza de que deseja apagar este utilizador?\')" value="' . $value['id'] . '">
+            X
+            </button>
+            </td>';
+            echo '</form>';
             // Fim da linha da tabela para o utilizador atual.
             echo '</tr>';
         }
@@ -364,7 +373,6 @@ function bild_list_utilizador($utilizadores, $filtro = "", $pagina_atual = 1)
     echo '</ul>';
     echo '</div>';
 }
-
 
 
 /**
@@ -459,13 +467,10 @@ function build_perfil_adm($utilizador)
     </div>';
 }
 
-
 /**
- * Cria o formulário para adicionar um novo utilizador no painel de administração.
- *
  * @return void
  */
-function adm_criar_utilizadores($departamentos)
+function adm_criar_utilizadores()
 {
     echo '<div class="container mt-5 mx-auto">
     <form action="" method="POST" id="form">
@@ -555,35 +560,232 @@ function adm_criar_utilizadores($departamentos)
 ';
 }
 
-
-function adm_build_departamentos($departamentos)
+function adm_criar_departamento()
 {
-    echo '<div class="p-3"><h1>Departamentos</h1></div>';
-    echo '<div class="container"><table class="table mt-3">';
+    echo '<div class="p-3"> <h2>Criar Departamento</h2> </div>';
+    echo '<div class="container col-8"><table class="table mt-3 ">';
+
+    // Início do cabeçalho da tabela.
     echo '<thead>';
     echo '<tr>';
+    // Colunas do cabeçalho com os títulos "Departamento", "Total funcionários" e "Gasto mensal".
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-start col-4" >Nome </th>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center col-2"  >Criar</th>';
+    echo '</tr>';
+
+    echo '</thead>';
+    // Fim do cabeçalho da tabela.
+
+    // Abre o corpo da tabela para conter os dados do departamento.
+    echo '<tbody>';
+    // Exibe o nome do departamento na coluna "Departamento".
+    echo '<form method="POST">
+            <td class="border  ">
+                <input type="text" maxlength="50" placeholder="ex Markting"  name="nome_dp" >
+            </td>';
+    echo '
+            <td class="border text-center ">
+                <button type="submit" name="criar_dp" value="">Save</button>
+            </td></form>';
+
+
+    echo '</tbody>';
+    echo '</table>';
+}
+
+/**
+ * Função para construir uma tabela de departamentos com informações e opções de exclusão.
+ *
+ * @param $departamentos - Um array contendo os departamentos e suas informações.
+ * @return void
+ */
+function adm_build_departamentos($departamentos)
+{
+    // Cria um bloco de cabeçalho com o título "Departamentos".
+    echo '<div class="p-3"><h1>Departamentos</h1></div>';
+
+    // Abre uma div para conter a tabela e define algumas classes para formatação.
+    echo '<div class="container"><table class="table mt-3">';
+
+    // Início do cabeçalho da tabela.
+    echo '<thead>';
+    echo '<tr>';
+    // Colunas do cabeçalho com os títulos "Id", "Nome" e "Delete".
     echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; " class="text-center">Id</th>';
     echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Nome</th>';
     echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Delete</th>';
     echo '</tr>';
     echo '</thead>';
-    echo '</div>';
+    // Fim do cabeçalho da tabela.
 
-    // Corpo da tabela com os dados dos utilizadores.
+    // Abre o corpo da tabela para conter os dados dos departamentos.
     echo '<tbody>';
     foreach ($departamentos as $key => $value) {
-        // Início da linha da tabela para cada utilizador.
+        // Início da linha da tabela para cada departamento.
         echo '<tr>';
-        echo '<td class="border text-primary text-center"><a href="">'.$value['id'].'</a></td>';
-        echo '<td class="border text-primary text-center"><a href="">'.$value['nome'].'</a></td>';
 
         echo '<form method="POST" action="" style="margin-left: 10px;">';
-        echo '<td class=" border text-primary text-center"><button type="submit" class="btn btn-danger" name="apagar_tabela" onclick="return confirm(\'Tem certeza de que deseja apagar esta tabela?\')">X</button> </td>';
+        // Coluna do id do departamento.
+        echo '<td class="border  text-center">' . $value['id'] . '</td>';
+        // Coluna do nome do departamento com um link para editar suas informações.
+        echo '<td class="border text-primary text-center"><a href="?main=admin&conteudo=edit_departamento&id=' . $value['id'] . '">' . $value['nome'] . '</a></td>';
+
+        // Coluna para exclusão do departamento usando um formulário com um botão "X".
+
+        echo '<td class="border text-primary text-center">
+        <button type="submit" class="btn btn-danger" name="delete_dp" value=" ' . $value['id'] . '"  onclick="return confirm(\'Tem certeza de que deseja apagar esta tabela?\')">
+        X
+        </button>
+         </td>';
         echo '</tr>';
         echo '</form>';
-        
     }
+    // Fim do corpo da tabela.
+
+    // Fecha a tabela e a div que a contém.
     echo '</tbody>';
     echo '</table></div>';
 }
+
+/**
+ * Função para construir a visualização detalhada de um departamento específico com base no ID fornecido.
+ *
+ * @param $id - O ID do departamento que se deseja visualizar.
+ * @return void
+ */
+function amd_build_departamentoId($id)
+{
+    // Obtém as informações detalhadas do departamento com base no ID fornecido.
+    $departamento = get_info_departamento($id);
+
+    // Exibe o nome do departamento como um título principal.
+    echo '<h1>' . $departamento['nome'] . '</h1>';
+
+    // Abre uma div para conter a tabela e define algumas classes para formatação.
+    echo '<div class="container"><table class="table mt-3">';
+
+    // Início do cabeçalho da tabela.
+    echo '<thead>';
+    echo '<tr>';
+    // Colunas do cabeçalho com os títulos "Departamento", "Total funcionários" e "Gasto mensal".
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; " class="text-center">Departamento</th>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Total funcionários</th>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Gasto mensal</th>';
+    echo '</tr>';
+    echo '</thead>';
+    // Fim do cabeçalho da tabela.
+
+    // Abre o corpo da tabela para conter os dados do departamento.
+    echo '<tbody>';
+    // Exibe o nome do departamento na coluna "Departamento".
+    echo '<td class="border  text-center">' . $departamento['nome'] . '</td>';
+
+    // Obtém informações adicionais do departamento usando a função get_infoadd_departamento().
+    $info = get_infoadd_departamento($id);
+
+    // Exibe o número total de funcionários na coluna "Total funcionários".
+    echo '<td class="border  text-center">' . $info['funcionarios'] . '</td>';
+
+    // Exibe o gasto mensal com o símbolo € na coluna "Gasto mensal".
+    echo '<td class="border  text-center"> € ' . $info['valortotal'] . '</td>';
+
+    echo '</tbody>';
+    echo '</table>';
+}
+
+/**
+ * Exibe o formulário de processamento de salários para selecionar o ano, mês e utilizador.
+ * Após a submissão do formulário, mostra as informações do salário para o utilizador selecionado.
+ *
+ * @param array $dados_utilizador Um array contendo as informações do utilizador selecionado (ano, mês e ID).
+ * @return void
+ */
+function amd_build_processamento($dados_utilizador)
+{
+    $anos = get_todos_anos();
+    echo "<div class='p-3'><h1>Processamento de Salário</h1></div>";
+    echo '<div class="container">';
+    echo '<form method="post" class="d-flex mt-2 gap-2"> ';
+
+    // Dropdown para selecionar o ano
+    echo '<select class="form-select" aria-label="Default select example" name="ano" required>';
+    echo '<option value="" selected disabled>Escolha o ano</option>';
+    foreach ($anos as $ano) {
+        echo '<option value="' . $ano . '">' . $ano . '</option>';
+    }
+    echo '</select>';
+
+    // Dropdown para selecionar o mês
+    echo '<select class="form-select" aria-label="Default select example" name="mes" required>';
+    echo '<option value="" selected disabled>Escolha o mês</option>';
+    for ($i = 1; $i <= 12; $i++) {
+        echo '<option value="' . $i . '">' . numeroParaMes($i) . '</option>';
+    }
+    echo '</select>';
+
+    // Dropdown para selecionar o utilizador
+    echo '<select class="form-select" aria-label="Default select example" name="id" required>';
+    echo '<option value="" selected disabled>Escolha o utilizador</option>';
+    $utilizadores = get_adm_ultilizadores();
+    foreach ($utilizadores as $utilizador) {
+        echo '<option value="' . $utilizador['id'] . '">' . $utilizador['nome'] . '</option>';
+    }
+    echo '</select>';
+
+    // Botão de submissão para pesquisar
+    echo '<button type="submit" class="btn btn-primary ml-auto" name="pesquisar">Pesquisar</button>';
+    echo '</form></div>';
+
+    if ($dados_utilizador) {
+        $nome = "";
+        foreach ($utilizadores as $utilizador) {
+            if ($dados_utilizador['id'] == $utilizador['id']) {
+                $nome = $utilizador['nome'];
+            }
+        }
+        $salario_info = get_salario_for_processamento($dados_utilizador);
+        if ($salario_info == false) {
+            // Caso não haja registro de salário para o mês e ano selecionados
+            echo '<div class="container pt-5">';
+            echo '<td style="border: 1px solid #ddd; padding: 8px;" colspan="2" class="text-center">Nenhum salário encontrado</td></div>';
+        } else {
+
+            echo '<div class="container"><table class="table mt-5">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; " class="text-center">Nome</th>';
+            echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Ano</th>';
+            echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Mês</th>';
+            echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Salário</th>';
+            echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Processamento</th>';
+            echo '</tr>';
+            echo '</thead>';
+
+            echo '<tbody>';
+            echo '<tr>';
+            echo '<td style="border: 1px solid #ddd; padding: 8px;" class="text-center">' . $nome . '</td>';
+            echo '<td style="border: 1px solid #ddd; padding: 8px;" class="text-center">' . $dados_utilizador['ano'] . '</td>';
+            echo '<td style="border: 1px solid #ddd; padding: 8px;" class="text-center">' . numeroParaMes($dados_utilizador['mes']) . '</td>';
+
+
+            echo '<td style="border: 1px solid #ddd; padding: 8px;" class="text-center">€ ' . $salario_info['salario_recebido'] . '</td>';
+            if ($salario_info['processado'] != 1) {
+                echo '<form method="post">';
+                echo '<td style="border: 1px solid #ddd; padding: 8px;" class="text-center">
+                <button type="submit" name="processar_mes" value="' . $salario_info['id'] . '" onclick="return confirm(\'Tem certeza ?\')">Processar ?</button></td>';
+                echo '</form>';
+            } else {
+                echo '<td style="border: 1px solid #ddd; padding: 8px;" class="text-center">Processado</td>';
+            }
+
+
+            echo '</tr>';
+            echo '</tbody>';
+
+            echo '</table></div>';
+        }
+    }
+}
+
+
 ?>

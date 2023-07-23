@@ -45,5 +45,31 @@ function criar_perfil($perfil)
     include 'connections/deconn.php'; // Inclui o arquivo para fechar a conexão com o banco de dados
 }
 
+/**
+ * Cria um novo departamento no banco de dados.
+ *
+ * Esta função insere um novo departamento no banco de dados usando o nome fornecido.
+ *
+ * @param string $nome O nome do departamento a ser criado.
+ * @return void
+ */
+function criar_departamento($nome)
+{
+    include 'connections/conn.php'; // Inclui o arquivo de conexão com o banco de dados
 
+    // Monta a consulta SQL para inserir o novo departamento
+    $query = "INSERT INTO `departamentos` (`nome`) VALUES ('$nome')";
+
+    // Executa a consulta e verifica se foi bem-sucedida
+    if (mysqli_query($conn, $query)) {
+        echo '<script>alert("Departamento criado com sucesso!");</script>';
+    } else {
+        echo '<script>alert("Erro ao criar departamento!");</script>';
+    }
+
+    include 'connections/deconn.php'; // Inclui o arquivo para fechar a conexão com o banco de dados
+
+    // Redireciona para a página de criação de departamento após a conclusão
+    echo '<meta http-equiv="refresh" content="0;url=?main=admin&conteudo=criar_departamento">';
+}
 ?>
