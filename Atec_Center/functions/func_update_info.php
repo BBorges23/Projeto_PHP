@@ -47,12 +47,9 @@ function update_perfil_utilizador($perfil, $id)
  * @param array $perfil Um array contendo os dados do utilizador a serem atualizados.
  * @return void
  */
-function update_perfil_for_adm($perfil)
+function update_perfil_for_adm($perfil,$id)
 {
     include 'connections/conn.php'; // Inclui o arquivo de conexão com o banco de dados
-
-    // Obtém o ID do utilizador a partir do array $perfil
-    $id = $perfil['id'];
 
     // Verifica se o array $perfil não está vazio
     if (!empty($perfil)) {
@@ -70,19 +67,21 @@ function update_perfil_for_adm($perfil)
         $departamento_id = $perfil['departamento_id'];
         $funcao = $perfil['funcao'];
         $estado_civil = $perfil['estado_civil'];
-        $salario_bruto = $perfil['salario_bruto']; 
-
+        $salario_bruto = $perfil['salario']; 
+       
         // Monta a consulta SQL para atualizar os dados do utilizador na tabela "utilizadores"
         $query = "UPDATE utilizadores SET nome = '$nome', data_nascimento = '$data_nascimento', nif = '$nif', iban = '$iban', 
-                  telm = '$telm', tel = '$tel', email = '$email', morada = '$morada', localidade = '$localidade', cp = '$cp', 
-                  departamento_id = '$departamento_id', funcao = '$funcao', estado_civil = '$estado_civil', salario_bruto = '$salario_bruto'
-                  WHERE id = '$id'";
+        telm = '$telm', tel = '$tel', email = '$email', morada = '$morada', localidade = '$localidade', cp = '$cp', 
+        departamento_id = '$departamento_id', funcao = '$funcao', estado_civil = '$estado_civil', salario_bruto = '$salario_bruto'
+        WHERE id = '$id'";
 
         // Executa a consulta SQL para atualizar os dados do utilizador
-        mysqli_query($conn, $query);
-
-        // Exibe uma mensagem de alerta informando que os dados foram atualizados com sucesso
-        echo '<script>alert("Dados Atualizados com sucesso");</script>';
+        if (mysqli_query($conn, $query)) {
+            // Exibe uma mensagem de alerta informando que os dados foram atualizados com sucesso
+            print_r($perfil);
+            echo '<script>alert("Dados Atualizados com sucesso");</script>';
+        }
+        
     }
 
     // Verifica se a nova senha foi fornecida no array $perfil

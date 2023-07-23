@@ -82,7 +82,6 @@ function obterNomeDepartamento($departamento_id) {
     return $nome_departamento;
 }
 
-
 /**
  * Lista os meses processados de um utilizador para um determinado ano
  *
@@ -305,6 +304,62 @@ function get_tipo_utilizador($id)
     }
 }
 
+/**
+ * Obtém os nomes dos departamentos do banco de dados.
+ *
+ * Esta função se conecta ao banco de dados, executa uma consulta SQL para obter os nomes dos departamentos
+ * e retorna um array contendo os nomes dos departamentos.
+ *
+ * @return array Retorna um array contendo os nomes dos departamentos.
+ */
+function get_nome_departmentos()
+{
+    include 'connections/conn.php'; // Inclui o arquivo de conexão com o banco de dados
+
+    // Verificar a conexão
+    if (!$conn) {
+        die("Conexão falhou: " . mysqli_connect_error());
+    }
+
+    // Etapa 2: Executar a consulta SQL para obter os nomes dos departamentos
+    $query = "SELECT nome FROM `departamentos`";
+    $result = mysqli_query($conn, $query);
+
+    // Etapa 3: Obter os resultados e armazená-los em um array
+    $dados = array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Adiciona cada nome de departamento ao array $dados
+            $dados[] = $row['nome'];
+        }
+    }
+
+    // Etapa 4: Fechar a conexão com o banco de dados
+    include 'connections/deconn.php';
+
+    // Retorna o array contendo os nomes dos departamentos
+    return $dados;
+}
+function get_departamentos()
+{
+    include 'connections/conn.php'; // Inclui o arquivo de conexão com o banco de dados
+
+    $query = "SELECT * FROM `departamentos` WHERE 1";
+    $result = mysqli_query($conn, $query);
+    $dados = array();
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Adiciona cada departamento como um elemento no array $dados
+            $dados[] = array(
+                'id' => $row['id'],
+                'nome' => $row['nome']
+            );
+        }
+    }
+    include 'connections/deconn.php'; // Fecha a conexão com o banco de dados
+    return $dados;
+}
 
 
 ?>

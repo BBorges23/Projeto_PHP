@@ -8,10 +8,12 @@
     if (@$_SESSION["log_type"] =='') {
         include 'modules/paginas/login.php';
     }
-    switch ($main) {
-        case 'login':
-            include 'modules/paginas/login.php';
-            break;
+    if (@$_SESSION['log_type'] != '')
+    {
+        switch ($main) {
+            case 'login':
+                include 'modules/paginas/login.php';
+                break;
             case 'utilizador':
                 if (@$_SESSION["log_type"] == 0 ) {
                     include 'modules/paginas/utilizador.php';
@@ -21,14 +23,16 @@
                 if (@$_SESSION["log_type"] == 1 ) {
                     include 'modules/admin/admin.php';
                 }
-               
-                break;
-        default:
-           
-            break;
 
-        
+                break;
+            default:
+
+                break;
+
+
+        }
     }
+
 
     ?>
 </main>

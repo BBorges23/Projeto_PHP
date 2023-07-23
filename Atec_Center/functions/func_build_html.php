@@ -91,6 +91,7 @@ function build_perfil_utilizador($ultilizador)
     </form>
 </div>';
 }
+
 /**
  * Converte um número em um nome de mês correspondente
  *
@@ -120,6 +121,7 @@ function numeroParaMes($numero)
 
     return 'Mês inválido';
 }
+
 /**
  * Cria uma tabela com os meses processados de um utilizador em um determinado ano
  *
@@ -238,98 +240,6 @@ function criar_info_salario($id)
 #################################################################################################################################################################################################
 
 /**
- * Cria o formulário de perfil do utilizador para o administrator 
- *
- * @param array $utilizador O array contendo os dados do utilizador
- * @return void
- */
-function build_perfil_adm($ultilizador)
-{
-        echo '<div class="container mt-5 mx-auto">
-        <form action="" method="POST" id="form">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group p-2">
-                        <label for="nome">Nome:</label>
-                        <input type="text" class="form-control p-2" name="nome" id="nome" maxlength="50" value="'.$ultilizador['nome'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="data_nascimento">Data de Nascimento:</label>
-                        <input type="date" class="form-control p-2" name="data_nascimento" id="data_nascimento" value="'.$ultilizador['data_nascimento'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="nif">NIF:</label>
-                        <input type="text" class="form-control p-2" name="nif" id="nif" maxlength="9"  value="'.$ultilizador['nif'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="iban">IBAN:</label>
-                        <input type="text" class="form-control p-2" name="iban" id="iban"  maxlength="25"  value="'.$ultilizador['iban'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="tel">Telefone Móvel:</label>
-                        <input type="text" class="form-control p-2" name="tel" id="tel" maxlength="13"  value="'.$ultilizador['tel'].'"  required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="telm">Telefone:</label>
-                        <input type="text" class="form-control p-2" name="telm" id="telm"  maxlength="13"  value="'.$ultilizador['telm'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control p-2" name="email" id="email"  maxlength="30"  value="'.$ultilizador['email'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="salario">Salario bruto:</label>
-                        <input type="float" class="form-control p-2" name="salario" id="salario"  value="'.$ultilizador['salario_bruto'].'" required>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group p-2">
-                        <label for="morada">Morada:</label>
-                        <input type="text" class="form-control p-2" name="morada" id="morada"   maxlength="255" value="'.$ultilizador['morada'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="localidade">Localidade:</label>
-                        <input type="text" class="form-control p-2" name="localidade" id="localidade"  maxlength="20"  value="'.$ultilizador['localidade'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="cp">Código Postal:</label>
-                        <input type="text" class="form-control p-2" name="cp" id="cp"  maxlength="8" value="'.$ultilizador['cp'].'" required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="departamento_id">Departamento:</label>
-                        <input type="number" class="form-control p-2" name="departamento_id" id="departamento_id"  maxlength="10"  value="'.$ultilizador['departamento_id'].'"  required>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="funcao">Função:</label>
-                        <input type="text" class="form-control p-2" name="funcao" id="funcao" maxlength="30" value="'.$ultilizador['funcao'].'" required>
-                    </div>
-                    <div class="form-group p-2 ">
-                        <label for="estado_civil">Estado Civil:</label>
-                        <select class="form-control" name="estado_civil" id="estado_civil" >
-                            <option value="solteiro"' . ($ultilizador['estado_civil'] === 'solteiro' ? ' selected' : '') . '>Solteiro</option>
-                            <option value="casado"' . ($ultilizador['estado_civil'] === 'casado' ? ' selected' : '') . '>Casado</option>
-                            <option value="divorciado"' . ($ultilizador['estado_civil'] === 'divorciado' ? ' selected' : '') . '>Divorciado</option>
-                            <option value="viuvo"' . ($ultilizador['estado_civil'] === 'viuvo' ? ' selected' : '') . '>Viúvo</option>
-                        </select>
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="senha">Senha:</label>
-                        <input type="password" class="form-control p-2" name="senha" id="senha" placeholder="****" >
-                    </div>
-                    <div class="form-group p-2">
-                        <label for="tipo">Tipo usuario:</label>
-                        <input type="text" class="form-control p-2" name="tipo" id="tipo" value="'.(get_tipo_utilizador($ultilizador['id']) == 1 ? 'ADM' : "Utilizador").'" readonly>
-                    </div>
-                    <div class="d-flex justify-content-end pt-2">
-                        <button type="submit" class="btn btn-primary ml-auto" name="update_user">Salvar</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>';
-}
-
-/**
  * Constrói uma lista de utilizadores em forma de tabela
  *
  * Esta função recebe um array contendo os dados de vários utilizadores e constrói uma tabela
@@ -344,14 +254,53 @@ function build_perfil_adm($ultilizador)
  *
  * @return void
  */
-function bild_list_utilizador($ultilizadores)
+function bild_list_utilizador($utilizadores, $filtro = "", $pagina_atual = 1)
 {
-    // Inicializa o contador para controlar o número de utilizadores exibidos.
-    $contador = 0;
+    $itens_por_pagina = 5;
+    $total_utilizadores = count($utilizadores);
+    $total_paginas = ceil($total_utilizadores / $itens_por_pagina);
+
+    // Verifica se a página atual é válida
+    if ($pagina_atual < 1 || $pagina_atual > $total_paginas) {
+        $pagina_atual = 1;
+    }
+
+    // Define o índice de início e fim dos itens a serem exibidos
+    $inicio = ($pagina_atual - 1) * $itens_por_pagina;
+    $fim = $inicio + $itens_por_pagina;
+
+    // Filtra os utilizadores conforme a página atual e o filtro por departamento
+    $utilizadores_exibidos = array();
+    foreach ($utilizadores as $value) {
+        $departamento = obterNomeDepartamento($value['departamento_id']);
+
+        // Verifica o filtro por departamento
+        if ($filtro === "" || $filtro == $departamento) {
+            $utilizadores_exibidos[] = $value;
+        }
+    }
 
     // Início da tabela com a classe Bootstrap para estilização.
-    echo '<div class="container"><table class="table mt-4">';
-    echo "<h1>Utilizadores</h1>";
+    echo '<div class="container"><table class="table mt-3">';
+    echo '<div class="d-flex justify-content-between mt-3">
+        <h1>Utilizadores</h1>
+        <div class="dropdown ">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Departamentos
+            </button>
+            <ul class="dropdown-menu">';
+
+    // Obter os nomes dos departamentos usando a função get_nome_departmentos().
+    echo '<li><a class="dropdown-item" href="?main=admin&conteudo=list_utilizadores&departamento=">Todos</a></li>';
+    foreach (get_nome_departmentos() as $departamento) {
+        // Gerar links para filtrar por departamento usando JavaScript (seu código JavaScript não está presente aqui).
+        echo '<li><a class="dropdown-item" href="?main=admin&conteudo=list_utilizadores&departamento=' . $departamento . '">' . $departamento . '</a></li>';
+    }
+
+    echo '
+            </ul>
+        </div>
+    </div>';
 
     // Cabeçalho da tabela com os títulos das colunas.
     echo '<thead>';
@@ -365,35 +314,149 @@ function bild_list_utilizador($ultilizadores)
 
     // Corpo da tabela com os dados dos utilizadores.
     echo '<tbody>';
-    foreach ($ultilizadores as $key => $value) {
-        $contador = $contador + 1;
 
-        // Início da linha da tabela para cada utilizador.
-        echo '<tr>';
+    for ($i = $inicio; $i < $fim; $i++) {
+        if (isset($utilizadores_exibidos[$i])) {
+            $value = $utilizadores_exibidos[$i];
+            $departamento = obterNomeDepartamento($value['departamento_id']);
 
-        // Coluna "Nome" contendo o nome do utilizador com um link para editar o perfil.
-        echo '<td class="border text-primary"><a href="?main=admin&conteudo=editar_ultilizador&id='.$value['id'].'">' .$value['nome']. '</a></td>';
+            // Início da linha da tabela para cada utilizador.
+            echo '<tr>';
 
-        // Coluna "NIF" contendo o NIF do utilizador.
-        echo '<td class="border text-center">' .$value['nif']. '</td>';
+            // Coluna "Nome" contendo o nome do utilizador com um link para editar o perfil.
+            echo '<td class="border text-primary"><a href="?main=admin&conteudo=editar_ultilizador&id=' . $value['id'] . '">' . $value['nome'] . '</a></td>';
 
-        // Coluna "Departamento" contendo o nome do departamento obtido pela função obterNomeDepartamento().
-        echo '<td class="border text-center">'.obterNomeDepartamento($value['departamento_id']).'</td>';
+            // Coluna "NIF" contendo o NIF do utilizador.
+            echo '<td class="border text-center">' . $value['nif'] . '</td>';
 
-        // Coluna "Tipo" exibindo o tipo de utilizador como "ADM" para administradores ou "Utilizador" para outros tipos de utilizadores.
-        echo '<td class="border text-center">'.(get_tipo_utilizador($value['id']) > 0 ? "ADM" : "Utilizador").'</td>';
+            // Coluna "Departamento" contendo o nome do departamento obtido pela função obterNomeDepartamento().
+            echo '<td class="border text-center">' . $departamento . '</td>';
 
-        // Fim da linha da tabela para o utilizador atual.
-        echo '</tr>';
+            // Coluna "Tipo" exibindo o tipo de utilizador como "ADM" para administradores ou "Utilizador" para outros tipos de utilizadores.
+            echo '<td class="border text-center">' . (get_tipo_utilizador($value['id']) > 0 ? "ADM" : "Utilizador") . '</td>';
 
-        // Limita o número de utilizadores exibidos a 15.
-        if ($contador > 14) {
-            break;
+            // Fim da linha da tabela para o utilizador atual.
+            echo '</tr>';
         }
     }
+
     // Fim da tabela e do container.
     echo '</tbody>';
     echo '</table></div>';
+
+    // Navegação de página
+    echo '<div class="container d-flex justify-content-end">';
+    echo '<ul class="pagination">';
+    // Link para página anterior (se aplicável)
+    if ($pagina_atual > 1) {
+        echo '<li class="page-item"><a class="page-link" href="?main=admin&conteudo=list_utilizadores&departamento=' . $filtro . '&page=' . ($pagina_atual - 1) . '">Anterior</a></li>';
+    }
+    // Links para as páginas numeradas
+    for ($i = 1; $i <= $total_paginas; $i++) {
+        // Adicione a classe "active" ao link da página atual.
+        $classe_ativa = ($i === $pagina_atual) ? ' active' : '';
+        echo '<li class="page-item' . $classe_ativa . '"><a class="page-link" href="?main=admin&conteudo=list_utilizadores&departamento=' . $filtro . '&page=' . $i . '">' . $i . '</a></li>';
+    }
+    // Link para próxima página (se aplicável)
+    if ($pagina_atual < $total_paginas) {
+        echo '<li class="page-item"><a class="page-link" href="?main=admin&conteudo=list_utilizadores&departamento=' . $filtro . '&page=' . ($pagina_atual + 1) . '">Próxima</a></li>';
+    }
+    echo '</ul>';
+    echo '</div>';
+}
+
+
+
+/**
+ * Cria o formulário de perfil do utilizador para o administrator
+ *
+ * @param array $utilizador O array contendo os dados do utilizador
+ * @return void
+ */
+function build_perfil_adm($utilizador)
+{
+    echo '<div class="container mt-5 mx-auto">
+        <form action="" method="POST" id="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control p-2" name="nome" id="nome" maxlength="50" value="' . $utilizador['nome'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="data_nascimento">Data de Nascimento:</label>
+                        <input type="date" class="form-control p-2" name="data_nascimento" id="data_nascimento" value="' . $utilizador['data_nascimento'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="nif">NIF:</label>
+                        <input type="text" class="form-control p-2" name="nif" id="nif" maxlength="9"  value="' . $utilizador['nif'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="iban">IBAN:</label>
+                        <input type="text" class="form-control p-2" name="iban" id="iban"  maxlength="25"  value="' . $utilizador['iban'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="tel">Telefone Móvel:</label>
+                        <input type="text" class="form-control p-2" name="tel" id="tel" maxlength="13"  value="' . $utilizador['tel'] . '"  required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="telm">Telefone:</label>
+                        <input type="text" class="form-control p-2" name="telm" id="telm"  maxlength="13"  value="' . $utilizador['telm'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control p-2" name="email" id="email"  maxlength="30"  value="' . $utilizador['email'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="salario">Salario bruto:</label>
+                        <input type="float" class="form-control p-2" name="salario" id="salario"  value="' . $utilizador['salario_bruto'] . '" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group p-2">
+                        <label for="morada">Morada:</label>
+                        <input type="text" class="form-control p-2" name="morada" id="morada"   maxlength="255" value="' . $utilizador['morada'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="localidade">Localidade:</label>
+                        <input type="text" class="form-control p-2" name="localidade" id="localidade"  maxlength="20"  value="' . $utilizador['localidade'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="cp">Código Postal:</label>
+                        <input type="text" class="form-control p-2" name="cp" id="cp"  maxlength="8" value="' . $utilizador['cp'] . '" required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="departamento_id">Departamento:</label>
+                        <input type="number" class="form-control p-2" name="departamento_id" id="departamento_id"  maxlength="10"  value="' . $utilizador['departamento_id'] . '"  required>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="funcao">Função:</label>
+                        <input type="text" class="form-control p-2" name="funcao" id="funcao" maxlength="30" value="' . $utilizador['funcao'] . '" required>
+                    </div>
+                    <div class="form-group p-2 ">
+                        <label for="estado_civil">Estado Civil:</label>
+                        <select class="form-control" name="estado_civil" id="estado_civil" >
+                            <option value="solteiro"' . ($utilizador['estado_civil'] === 'solteiro' ? ' selected' : '') . '>Solteiro</option>
+                            <option value="casado"' . ($utilizador['estado_civil'] === 'casado' ? ' selected' : '') . '>Casado</option>
+                            <option value="divorciado"' . ($utilizador['estado_civil'] === 'divorciado' ? ' selected' : '') . '>Divorciado</option>
+                            <option value="viuvo"' . ($utilizador['estado_civil'] === 'viuvo' ? ' selected' : '') . '>Viúvo</option>
+                        </select>
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="senha">Senha:</label>
+                        <input type="password" class="form-control p-2" name="senha" id="senha" placeholder="****" >
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="tipo">Tipo usuario:</label>
+                        <input type="text" class="form-control p-2" name="tipo" id="tipo" value="' . (get_tipo_utilizador($utilizador['id']) == 1 ? 'ADM' : "Utilizador") . '" readonly>
+                    </div>
+                    <div class="d-flex justify-content-end pt-2">
+                        <button type="submit" class="btn btn-primary ml-auto" name="update_user">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>';
 }
 
 
@@ -402,7 +465,7 @@ function bild_list_utilizador($ultilizadores)
  *
  * @return void
  */
-function adm_criar_utilizadores()
+function adm_criar_utilizadores($departamentos)
 {
     echo '<div class="container mt-5 mx-auto">
     <form action="" method="POST" id="form">
@@ -490,5 +553,37 @@ function adm_criar_utilizadores()
     </form>
 </div>
 ';
+}
+
+
+function adm_build_departamentos($departamentos)
+{
+    echo '<div class="p-3"><h1>Departamentos</h1></div>';
+    echo '<div class="container"><table class="table mt-3">';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; " class="text-center">Id</th>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Nome</th>';
+    echo '<th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;" class="text-center">Delete</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '</div>';
+
+    // Corpo da tabela com os dados dos utilizadores.
+    echo '<tbody>';
+    foreach ($departamentos as $key => $value) {
+        // Início da linha da tabela para cada utilizador.
+        echo '<tr>';
+        echo '<td class="border text-primary text-center"><a href="">'.$value['id'].'</a></td>';
+        echo '<td class="border text-primary text-center"><a href="">'.$value['nome'].'</a></td>';
+
+        echo '<form method="POST" action="" style="margin-left: 10px;">';
+        echo '<td class=" border text-primary text-center"><button type="submit" class="btn btn-danger" name="apagar_tabela" onclick="return confirm(\'Tem certeza de que deseja apagar esta tabela?\')">X</button> </td>';
+        echo '</tr>';
+        echo '</form>';
+        
+    }
+    echo '</tbody>';
+    echo '</table></div>';
 }
 ?>

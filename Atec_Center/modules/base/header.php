@@ -24,9 +24,12 @@
                echo 'href="index.php?main=utilizador"style="text-decoration: none;color: white;">TechStack</a></h2>';
             }else if (@$_SESSION["log_type"] == 1) {
                 echo 'href="index.php?main=admin"style="text-decoration: none;color: white;">TechStack</a></h2>';
-            }else{
-                echo 'style="text-decoration: none;color: white;">TechStack</a></h2>';
+            }else if (@$_SESSION["log_type"] == '') {
+                echo 'href="index.php"style="text-decoration: none;color: white;">TechStack</a></h2>';
+               
+                //echo 'style="text-decoration: none;color: white;">TechStack</a></h2>';
             }
+            echo @$_SESSION["log_type"] == 0;
             ?>
              
         </div>

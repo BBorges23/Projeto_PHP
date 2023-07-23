@@ -25,7 +25,7 @@
 
 
 <?php
-$id = $_SESSION['id_user'];
+$id = @$_SESSION['id_user'];
 $info_utilizador = getUltilizador($id);
 echo '
 
@@ -54,9 +54,20 @@ echo '
 
   </ul>
 </div>
-    <button type="button" class="btn  w-100 p-3" >Utilizadores</button> 
-    <button type="button" class="btn  w-100 p-3" >Departamentos</button>
+    <div class="dropdown ">
+        <button class="btn btn-secondary dropdown-toggle  w-100 p-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Departamentos
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+            <li><a class="dropdown-item" href="?main=admin&conteudo=criar_departamento">Criar </a></li>
+            <li><a class="dropdown-item" href="?main=admin&conteudo=list_departamento">Editar</a></li>
+
+        </ul>
+    </div>
+
     <button type="button" class="btn  w-100 p-3">Processamento</button>
+    <button type="button" class="btn  w-100 p-3" ></button>
 </div>
 <div class="p-2">
     <a href="sair.php" class="mb-5"><i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color: #262a57;">
@@ -79,23 +90,32 @@ echo '
             break;
         case 'list_utilizadores':
             $ultilizadores = get_adm_ultilizadores();
-            //print_r($ultilizadores);
-            bild_list_utilizador($ultilizadores);    
+            if (@$_GET['departamento']) {
+                $filtro = $_GET['departamento']; 
+            }else{$filtro = ""; }
+            $page = (@$_GET['page']) ? $_GET['page'] : 1;
+            
+            bild_list_utilizador($ultilizadores, $filtro, $page);  
+            
             break;
         case 'editar_ultilizador':
             $id = $_GET['id'];
-            $ultilizador = getUltilizador($id);
-            build_perfil_adm($ultilizador);
+            $utilizador = getUltilizador($id);
+            build_perfil_adm($utilizador);
+            
             if (isset($_POST['update_user'])) {
-                update_perfil_for_adm($_POST);
+               
+                update_perfil_for_adm($_POST,$id);
             }
 
             break;
-        case 'salarios':
+        case 'criar_departamento':
+            
 
             break;
-        case 'info_salario':
-
+        case 'list_departamento':
+            $dep = get_departamentos();
+            adm_build_departamentos($dep);
             break;
         default:
             echo '';
